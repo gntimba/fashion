@@ -8,7 +8,7 @@ module.exports = function (app, passport) {
     app.post('/signup', home.signup);
 
 
-    // app.post('/auth', home.login);
+    app.post('/auth', home.login);
 
     // app.get('/profile',passport.authenticate('jwt', { session: false}),home.users);
     // app.get('/logout',passport.authenticate('jwt', { session: false}),home.logout);

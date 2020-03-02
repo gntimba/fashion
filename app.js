@@ -27,14 +27,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 /***************Mongodb configuratrion********************/
 var mongoose = require('mongoose');
-var configDB = require('./config/database.js');
+
 
 var models = require("./models");
 //configuration ===============================================================
 //mongoose.connect(configDB.url,{ useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false }); // connect to our database
 
 
-require('./config/passport')(passport); // pass passport for configuration
+//require('./config/passport')(passport); // pass passport for configuration
 
 //set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -50,7 +50,7 @@ app.set('view engine', 'ejs');
 
 //required for passport
 
-models.sequelize.sync().then(function(){
+models.sequelize.sync({ alter: true }).then(function(){
     console.log("everything is fine")
 }).catch(function(err){
     console.log(err,"Something went wrong with the database!")
