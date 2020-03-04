@@ -1,3 +1,3 @@
-# Stokvel
+# Fashion APP
 
 Node js backend
