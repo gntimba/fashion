@@ -24,17 +24,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
-/***************Mongodb configuratrion********************/
-var mongoose = require('mongoose');
-
-
 var models = require("./models");
 //configuration ===============================================================
 //mongoose.connect(configDB.url,{ useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false }); // connect to our database
 
 
-//require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass passport for configuration
 
 //set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -49,6 +44,9 @@ app.set('view engine', 'ejs');
 
 
 //required for passport
+// routes ======================================================================
+require('./config/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+// app.use('/api',passport.authenticate('jwt', { session: false}),require('./config/routes.js'))
 
 models.sequelize.sync({ alter: true }).then(function(){
     console.log("everything is fine")
@@ -66,9 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// routes ======================================================================
-require('./config/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-//app.use('/api',passport.authenticate('jwt', { session: false}),require('./config/routes.js'))
+
 
 //launch ======================================================================
 app.listen(port);

@@ -1,5 +1,5 @@
 {
-  "name": "fashion app",
+  "name": "fashion_app",
   "version": "0.0.1",
   "scripts": {
     "start": "pm2 start app.js",
