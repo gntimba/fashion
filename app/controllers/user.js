@@ -5,7 +5,6 @@ var models = require('../../models');
 var User = models.user;
 var Webtoken = models.token
 var jwt = require('jsonwebtoken');
-var transact = require('../util/transact');
 const Op = require('sequelize').Op;
 
 exports.signup = function (req, res) {
