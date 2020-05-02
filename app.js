@@ -48,11 +48,11 @@ app.set('view engine', 'ejs');
 require('./config/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 // app.use('/api',passport.authenticate('jwt', { session: false}),require('./config/routes.js'))
 
-models.sequelize.sync({ alter: true }).then(function(){
-    console.log("everything is fine")
-}).catch(function(err){
-    console.log(err,"Something went wrong with the database!")
-})
+// models.sequelize.sync({ alter: true }).then(function(){
+//     console.log("everything is fine")
+// }).catch(function(err){
+//     console.log(err,"Something went wrong with the database!")
+// })
 
 app.use(session({
     secret: 'I Love India...',

@@ -128,7 +128,7 @@ exports.update = function (req, res) {
 
 exports.login = function (req, res) {
 	User.findAll({
-		where: { "mail": req.body.mail },
+		where: { "mail": req.body.mail,"active":true },
 		limit: 1
 	}).then(function (results) {
 		if (results.length > 0) {
@@ -154,6 +154,8 @@ exports.login = function (req, res) {
 				} else
 					res.status(401).json({ "message": "Password is wrong", "code": 401 })
 			})
+		}else{
+			res.status(404).json({ "message": "Account does not exist", "code": 404 })
 		}
 
 	}).catch(function (err) {
